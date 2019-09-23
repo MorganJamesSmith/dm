@@ -58,9 +58,9 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]         = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]          = { "term", NULL };
-static const char *calc[]             = { "term", "R", "--no-save", NULL };
-static const char *mail[]             = { "term", "neomutt", NULL };
+static const char *termcmd[]          = { "st", NULL };
+static const char *calc[]             = { "st", "-e", "R", "--no-save", NULL };
+static const char *mail[]             = { "st", "-e", "neomutt", NULL };
 static const char *web[]              = { "tabbed", "-c", "-r", "2", "surf", "-e", "''", NULL };
 static const char *lock[]             = { "slock", NULL };
 static const char *volumedown[]       = { "lmc", "down", "5", NULL };
@@ -77,6 +77,16 @@ static const char *displayselect[]    = { "displayselect", NULL };
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ MODKEY,    XF86XK_AudioLowerVolume,      spawn,          {.v = volumedown } },
+	{ NULL,      XF86XK_AudioLowerVolume,      spawn,          {.v = volumedown } },
+	{ MODKEY,    XF86XK_AudioRaiseVolume,      spawn,          {.v = volumeup } },
+	{ NULL,      XF86XK_AudioRaiseVolume,      spawn,          {.v = volumeup } },
+	{ MODKEY,     XF86XK_MonBrightnessUp,      spawn,          {.v = backlightup } },
+	{ NULL,       XF86XK_MonBrightnessUp,      spawn,          {.v = backlightup } },
+	{ MODKEY,   XF86XK_MonBrightnessDown,      spawn,          {.v = backlightdown } },
+	{ NULL,     XF86XK_MonBrightnessDown,      spawn,          {.v = backlightdown } },
+	{ MODKEY,           XF86XK_AudioMute,      spawn,          {.v = volumemutetoggle } },
+	{ NULL,             XF86XK_AudioMute,      spawn,          {.v = volumemutetoggle } },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = web } },
