@@ -30,7 +30,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	/*{ "Gimp",     NULL,       NULL,       0,            1,           -1 },*/
 	/*{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },*/
-	{ NULL,        NULL,       NULL,       NULL,         NULL,        NULL },
+	{ "",         NULL,       NULL,       0,            0,           -1 },
 };
 
 /* layout(s) */
@@ -67,9 +67,11 @@ static const char *volumedown[]       = { "lmc", "down", "5", NULL };
 static const char *volumeup[]         = { "lmc", "up", "5", NULL };
 static const char *volumemutetoggle[] = { "lmc", "mute", NULL };
 static const char *volumemute[]       = { "lmc", "truemute", NULL };
-static const char *songnext[]         = { "mpc", "next", NULL };
-static const char *songprev[]         = { "mpc", "prev", NULL };
-static const char *songtoggle[]       = { "mpc", "toggle", NULL };
+static const char *songnext[]         = { "lmc", "next", NULL };
+static const char *songprev[]         = { "lmc", "prev", NULL };
+static const char *songtoggle[]       = { "lmc", "toggle", NULL };
+static const char *songscrubf[]       = { "lmc", "f", "5", NULL };
+static const char *songscrubb[]       = { "lmc", "b", "5", NULL };
 static const char *backlightup[]      = { "xbacklight", "-steps", "1", "-time", "0", "-inc", "10", NULL };
 static const char *backlightdown[]    = { "xbacklight", "-steps", "1", "-time", "0", "-dec", "10", NULL };
 static const char *displayselect[]    = { "displayselect", NULL };
@@ -78,15 +80,15 @@ static const char *displayselect[]    = { "displayselect", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,    XF86XK_AudioLowerVolume,      spawn,          {.v = volumedown } },
-	{ NULL,      XF86XK_AudioLowerVolume,      spawn,          {.v = volumedown } },
+	{ 0,         XF86XK_AudioLowerVolume,      spawn,          {.v = volumedown } },
 	{ MODKEY,    XF86XK_AudioRaiseVolume,      spawn,          {.v = volumeup } },
-	{ NULL,      XF86XK_AudioRaiseVolume,      spawn,          {.v = volumeup } },
+	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          {.v = volumeup } },
 	{ MODKEY,     XF86XK_MonBrightnessUp,      spawn,          {.v = backlightup } },
-	{ NULL,       XF86XK_MonBrightnessUp,      spawn,          {.v = backlightup } },
+	{ 0,          XF86XK_MonBrightnessUp,      spawn,          {.v = backlightup } },
 	{ MODKEY,   XF86XK_MonBrightnessDown,      spawn,          {.v = backlightdown } },
-	{ NULL,     XF86XK_MonBrightnessDown,      spawn,          {.v = backlightdown } },
+	{ 0,        XF86XK_MonBrightnessDown,      spawn,          {.v = backlightdown } },
 	{ MODKEY,           XF86XK_AudioMute,      spawn,          {.v = volumemutetoggle } },
-	{ NULL,             XF86XK_AudioMute,      spawn,          {.v = volumemutetoggle } },
+	{ 0,                XF86XK_AudioMute,      spawn,          {.v = volumemutetoggle } },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = web } },
@@ -122,7 +124,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Up,     spawn,          {.v = volumeup } },
 	{ MODKEY,                       XK_Down,   spawn,          {.v = volumedown } },
 	{ MODKEY,                       XK_Right,  spawn,          {.v = songnext } },
+	{ MODKEY|ShiftMask,             XK_Right,  spawn,          {.v = songscrubf } },
 	{ MODKEY,                       XK_Left,   spawn,          {.v = songprev } },
+	{ MODKEY|ShiftMask,             XK_Left,   spawn,          {.v = songscrubb } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = +1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = +1 } },
