@@ -60,7 +60,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[]         = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]          = { "st", NULL };
 static const char *calc[]             = { "st", "-e", "R", "--no-save", NULL };
-static const char *mail[]             = { "st", "-e", "neomutt", NULL };
+static const char *editor[]           = { "emacsclient", "-create-frame", "-a=\"\"", NULL };
 static const char *web[]              = { "tabbed", "-c", "-r", "2", "surf", "-e", "''", NULL };
 static const char *lock[]             = { "slock", NULL };
 static const char *volumedown[]       = { "lmc", "down", "5", NULL };
@@ -72,6 +72,7 @@ static const char *songprev[]         = { "lmc", "prev", NULL };
 static const char *songtoggle[]       = { "lmc", "toggle", NULL };
 static const char *songscrubf[]       = { "lmc", "f", "5", NULL };
 static const char *songscrubb[]       = { "lmc", "b", "5", NULL };
+static const char *songstatus[]       = { "notify", "songstatus", NULL };
 static const char *backlightup[]      = { "xbacklight", "-steps", "1", "-time", "0", "-inc", "10", NULL };
 static const char *backlightdown[]    = { "xbacklight", "-steps", "1", "-time", "0", "-dec", "10", NULL };
 static const char *displayselect[]    = { "displayselect", NULL };
@@ -92,7 +93,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = web } },
-	{ MODKEY,                       XK_e,      spawn,          {.v = mail } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = editor } },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_a,      spawn,          {.v = calc } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
@@ -121,6 +122,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY,                     XK_question, spawn,          {.v = songstatus } },
 	{ MODKEY,                       XK_Up,     spawn,          {.v = volumeup } },
 	{ MODKEY,                       XK_Down,   spawn,          {.v = volumedown } },
 	{ MODKEY,                       XK_Right,  spawn,          {.v = songnext } },
