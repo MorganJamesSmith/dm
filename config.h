@@ -60,7 +60,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[]         = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]          = { "st", NULL };
 static const char *calc[]             = { "st", "-e", "R", "--no-save", NULL };
-static const char *editor[]           = { "emacsclient", "-create-frame", "-a=\"\"", NULL };
+static const char *editor[]           = { "emacsclient", "-create-frame", "-a=", NULL };
 static const char *web[]              = { "tabbed", "-c", "-r", "2", "surf", "-e", "''", NULL };
 static const char *lock[]             = { "slock", NULL };
 static const char *volumedown[]       = { "lmc", "down", "5", NULL };
