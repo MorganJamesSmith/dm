@@ -58,7 +58,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]         = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]          = { "st", NULL };
+static const char *termcmd[]          = { "emacsclient", "-create-frame", "-e", "(if (get-buffer \"vterm\") (switch-to-buffer \"vterm\") (vterm))", NULL };
 static const char *calc[]             = { "st", "-e", "R", "--no-save", NULL };
 static const char *editor[]           = { "emacsclient", "-create-frame", "-a=", NULL };
 static const char *web[]              = { "tabbed", "-c", "-r", "2", "surf", "-e", "''", NULL };
@@ -129,10 +129,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Right,  spawn,          {.v = songscrubf } },
 	{ MODKEY,                       XK_Left,   spawn,          {.v = songprev } },
 	{ MODKEY|ShiftMask,             XK_Left,   spawn,          {.v = songscrubb } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = +1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = -1 } },
+	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	TAGKEYS(                        XK_1,                      0)
